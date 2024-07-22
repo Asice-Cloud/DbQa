@@ -81,5 +81,5 @@ Implementation Path
 
 ### 5. Optimization and Debugging
 
-* Optimize algorithm performance, reducing qubit count and gate operations.
+* Optimize algorithm performance, reducing Qbit count and gate operations.
 * Debug the system using simulators and actual quantum hardware.
