@@ -11,7 +11,7 @@
 #include <numeric>
 #include <random>
 #include <ctime>
-#include "matrix.h"
+#include "Matrix.h"
 
 using namespace std::complex_literals;
 

@@ -6,7 +6,7 @@
 Qbit::Qbit(unsigned Qbits) noexcept : QbitNumber(Qbits) {
 	generator.seed((unsigned)time(NULL));
 	if (Qbits != 0)
-		amplitudes = Matrix(1, (unsigned)pow(2, Qbits), sqrt(1.0 / pow(2, Qbits)));
+		amplitudes = Matrix(1, (unsigned)pow(2, Qbits), std::complex<double>{sqrt(1.0 / pow(2, Qbits)), 0.0});
 }
 
 Qbit::Qbit(const Qbit& q) noexcept {
@@ -105,8 +105,9 @@ void Qbit::concentrate(unsigned index) {
 	return;
 }
 
-void Qbit::reset() {
-	this->amplitudes = Matrix(1, (unsigned)pow(2, this->QbitNumber), sqrt(1.0 / pow(2, this->QbitNumber)));
+void Qbit::reset()
+{
+	this->amplitudes = Matrix(1, (unsigned)pow(2, this->QbitNumber), {sqrt(1.0 / pow(2, this->QbitNumber)), 0.0});
 	return;
 }
 
@@ -181,7 +182,7 @@ bool Qbit::pauliZ(Qbit& q) {
 }
 
 Matrix Qbit::hadamard() {
-	Matrix H(2, 2, 1);
+	Matrix H(2, 2, std::complex<double>{1.0, 0.0});
 	H(1, 1) = -1;
 	H *= std::complex<double>(1 / sqrt(2), 0);
 	return H;
@@ -272,7 +273,7 @@ bool Qbit::rotZ(Qbit& q, double angle) {
 
 Matrix Qbit::controlled(unsigned Qbits, std::string gate, std::string angle) {
 	if (gate == "identity")
-		return Matrix((unsigned)pow(2, Qbits), (unsigned)pow(2, Qbits), 1);
+		return Matrix((unsigned)pow(2, Qbits), (unsigned)pow(2, Qbits), {1.0, 0.0});
 	Matrix C((unsigned)pow(2, Qbits), (unsigned)pow(2, Qbits));
 	for (unsigned i = 0; i < (unsigned)pow(2, Qbits) - 2; i++)
 		C(i, i) = 1;

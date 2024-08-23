@@ -433,7 +433,7 @@ bool Matrix::reshape(const unsigned& row, const unsigned& col) {
 }
 
 std::complex<double> Matrix::trace() {
-	std::complex<double> res = 0;
+	std::complex<double> res = {00., 0.0};
 	for (unsigned i = 0; i < std::min(this->rows, this->cols); i++)
 		res += this->mat[i][i];
 	return res;
